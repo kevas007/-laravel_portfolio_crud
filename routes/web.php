@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Models\About;
 use App\Models\Contact;
 use App\Models\Facts;
@@ -8,6 +9,7 @@ use App\Models\PortfolioStatique;
 use App\Models\Service;
 use App\Models\ServiceStatic;
 use App\Models\Skill;
+use App\Models\Skillstatic;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,14 +26,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $abouts= About::all();
     $contacts = Contact::all();
-    $facts= Facts::all();
+    $facts =Facts::all();
     $portfolios = Portfolio::all();
     $portfolioStats = PortfolioStatique::all();
-    $services =Service::all();
-    $servicestacs=ServiceStatic::all();
+    $services = Service::all();
+    $servicestacs = ServiceStatic::all();
     $skills = Skill::all();
-    return view('welcome', compact('abouts', 'contacts', 'facts', 'portfolios','portfolioStats', 'services', 'skills','servicestacs'));
+    $skillStact = Skillstatic::all();
+    return view('welcome', compact('services', 'facts', 'portfolios', 'portfolioStats','servicestacs', 'skills', 'skillStact', 'abouts', 'contacts'));
 });
+
+Route::resource('/dashboard/about', AboutController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
