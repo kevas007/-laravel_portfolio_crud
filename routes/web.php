@@ -6,6 +6,7 @@ use App\Models\Facts;
 use App\Models\Portfolio;
 use App\Models\PortfolioStatique;
 use App\Models\Service;
+use App\Models\ServiceStatic;
 use App\Models\Skill;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,9 @@ Route::get('/', function () {
     $portfolios = Portfolio::all();
     $portfolioStats = PortfolioStatique::all();
     $services =Service::all();
+    $servicestacs=ServiceStatic::all();
     $skills = Skill::all();
-    return view('welcome', compact('abouts', 'contacts', 'facts', 'portfolios','portfolioStats', 'services', 'skills'));
+    return view('welcome', compact('abouts', 'contacts', 'facts', 'portfolios','portfolioStats', 'services', 'skills','servicestacs'));
 });
 
 Route::get('/dashboard', function () {
