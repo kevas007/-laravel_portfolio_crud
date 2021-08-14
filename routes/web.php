@@ -4,6 +4,7 @@ use App\Models\About;
 use App\Models\Contact;
 use App\Models\Facts;
 use App\Models\Portfolio;
+use App\Models\PortfolioStatique;
 use App\Models\Service;
 use App\Models\Skill;
 use Illuminate\Support\Facades\Route;
@@ -23,10 +24,11 @@ Route::get('/', function () {
     $abouts= About::all();
     $contacts = Contact::all();
     $facts= Facts::all();
-    $Portfolios = Portfolio::all();
+    $portfolios = Portfolio::all();
+    $portfolioStats = PortfolioStatique::all();
     $services =Service::all();
     $skills = Skill::all();
-    return view('welcome', compact('abouts', 'contacts', 'facts', 'Portfolios', 'services', 'skills'));
+    return view('welcome', compact('abouts', 'contacts', 'facts', 'portfolios','portfolioStats', 'services', 'skills'));
 });
 
 Route::get('/dashboard', function () {

@@ -23,11 +23,11 @@ class CreateAboutsTable extends Migration
             $table->string('paragra', 300);
             $table->string('img',100);
             $table->string('description', 200);
-            $table->date('birthday');
+            $table->string('birthday');
             $table->string('website', 100);
             $table->string('phone');
             $table->string('city', 100);
-            $table->integer('age');
+            $table->string('age');
             $table->string('degree', 80);
             $table->string('email', 100);
             $table->string('freelance', 100);
