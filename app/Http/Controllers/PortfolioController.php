@@ -14,7 +14,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        $portfolio= Portfolio::all();
+        return view('backend.pages.portfolio', compact('portfolio'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.portfolioCrud.portfolioCreate');
     }
 
     /**
@@ -35,7 +36,17 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'title' => 'required|max:25',
+            'filter'=>'required|max:50',
+            'lien'=> 'required|max:50'
+        ]);
+        $store = new Portfolio;
+        $store->title = $request->title;
+        $store->filter = $request->filter;
+        $store->lien = $request->lien;
+        $store->save();
+        return redirect()->route('/dashboard/portfolio')->with('success', 'Portfolio créé avec succès');
     }
 
     /**
@@ -46,7 +57,8 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        $show = $portfolio;
+        return view("backend.pages.portfolioCrud.portfolioShow", compact("show"));
     }
 
     /**
@@ -55,9 +67,10 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Portfolio $portfolio)
+    public function edit( $id)
     {
-        //
+        $edit= Portfolio::find($id);
+        return view('backend.pages.portfolioCrud.portfolioEdit', compact('edit'));
     }
 
     /**
@@ -69,7 +82,17 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, Portfolio $portfolio)
     {
-        //
+        request()->validate([
+            'title' => 'required|max:25',
+            'filter'=>'required|max:50',
+            'lien'=> 'required|max:50'
+        ]);
+        $update = new Portfolio;
+        $update->title = $request->title;
+        $update->filter = $request->filter;
+        $update->lien = $request->lien;
+        $update->save();
+        return redirect()->route('/dashboard/portfolio')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -78,8 +101,10 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Portfolio $portfolio)
+    public function destroy( $id)
     {
-        //
+        $destroy = Portfolio::find($id);
+        $destroy->delete();
+        return redirect("/dashboard/portfolio")->with('danger', 'effacé');
     }
 }

@@ -36,6 +36,25 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'titreAbout'=>['required', 'max:35'],
+            'para'=>['required', 'max:255'],
+            'nom'=>['required', 'max:20'],
+            'prenom'=>['required', 'max:15'],
+            'titre'=>['required', 'max:35'],
+            'paragra'=>['required', 'max:255'],
+            'img'=>['required', 'max:35'],
+            'description'=>['required', 'max:255'],
+            'birthday'=>['required', 'max:45'],
+            'website'=>['required', 'max:55'],
+            'phone'=>['required', 'max:20'],
+            'city'=>['required', 'max:105'],
+            'age'=>['required', 'max:35'],
+            'degree'=>['required', 'max:35'],
+            'freelance'=>['required', 'max:45'],
+            'paragraphe'=>['required', 'max:255']
+        ]);
+
         $store = new About;
         $store->titreAbout = $request->titreAbout;
         $store->para = $request->para;
@@ -55,7 +74,7 @@ class AboutController extends Controller
         $store->freelance = $request->freelance;
         $store->paragraphe = $request->paragraphe;
         $store->save();
-        return redirect('/dashboard/about');
+        return redirect('/dashboard/about')->with('succes', 'creation effectif');
     }
 
     /**
@@ -64,9 +83,9 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function show(About $about, $id)
+    public function show(About $about)
     {
-        $show = About::find($id);
+        $show = $about;
         return view("backend.pages.aboutCrud.aboutShow", compact("show"));
     }
 
@@ -76,9 +95,10 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function edit(About $about, $id)
+    public function edit($id)
     {
-        $edit = About::find($id);
+        // $edit = $about;
+        $edit= About::find($id);
         return view('backend.pages.aboutCrud.aboutEdit', compact('edit'));
 
     }
@@ -91,7 +111,27 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, About $about)
+
     {
+        request()->validate([
+        'titreAbout'=>['required', 'max:35'],
+        'para'=>['required', 'max:255'],
+        'nom'=>['required', 'max:20'],
+        'prenom'=>['required', 'max:15'],
+        'titre'=>['required', 'max:35'],
+        'paragra'=>['required', 'max:255'],
+        'img'=>['required', 'max:35'],
+        'description'=>['required', 'max:255'],
+        'birthday'=>['required', 'max:45'],
+        'website'=>['required', 'max:55'],
+        'phone'=>['required', 'max:20'],
+        'city'=>['required', 'max:105'],
+        'age'=>['required', 'max:35'],
+        'degree'=>['required', 'max:35'],
+        'freelance'=>['required', 'max:45'],
+        'paragraphe'=>['required', 'max:255']
+    ]);
+
         $update = new About;
         $update->titreAbout = $request->titreAbout;
         $update->para = $request->para;
@@ -111,7 +151,7 @@ class AboutController extends Controller
         $update->freelance = $request->freelance;
         $update->paragraphe = $request->paragraphe;
         $update->save();
-        return redirect('/about');
+        return redirect('/dashboard/about')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -120,10 +160,10 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function destroy(About $about, $id)
+    public function destroy($id)
     {
         $destroy = About::find($id);
         $destroy->delete();
-        return redirect("/dashboard/about ");
+        return redirect("/dashboard/about")->with('danger');
     }
 }

@@ -14,7 +14,8 @@ class FactsController extends Controller
      */
     public function index()
     {
-        //
+        $facts= Facts::all();
+        return view('backend.pages.facts', compact('facts'));
     }
 
     /**
@@ -35,7 +36,31 @@ class FactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre' => 'required|max:25',
+            'titrePara' =>'required|max: 20',
+            'happy'=> 'required|max:100',
+            'paraHappy'=>'required|max:30',
+            'project'=> 'required|max:35',
+            'paraProject'=>'required|max:30',
+            'support'=> 'required|max:100',
+            'paraSupp'=>'required|max:35',
+            'work'=>'required|max:100',
+            'paraWork'=>'required|max:35',
+        ]);
+        $store= new Facts;
+        $store->titre=$request->titre;
+        $store->titrePara=$request->titrePara;
+        $store->happy=$request->happy;
+        $store->paraHappy=$request->paraHappy;
+        $store->project=$request->project;
+        $store->paraProject=$request->paraProject;
+        $store->support=$request->support;
+        $store->paraSupp=$request->paraSupp;
+        $store->work=$request->work;
+        $store->paraWork=$request->paraWork;
+        $store->save();
+        return redirect('/dashboard/facts')->with('succes', 'creation effectif');
     }
 
     /**
@@ -46,7 +71,8 @@ class FactsController extends Controller
      */
     public function show(Facts $facts)
     {
-        //
+        $show = $facts;
+        return view("backend.pages.factsCrud.factShow", compact("show"));
     }
 
     /**
@@ -55,9 +81,10 @@ class FactsController extends Controller
      * @param  \App\Models\Facts  $facts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Facts $facts)
+    public function edit($id)
     {
-        //
+        $edit= Facts::find($id);
+        return view('backend.pages.factsCrud.factsEdit', compact('edit'));
     }
 
     /**
@@ -69,7 +96,33 @@ class FactsController extends Controller
      */
     public function update(Request $request, Facts $facts)
     {
-        //
+
+        request()->validate([
+            'titre' => 'required|max:25',
+            'titrePara' =>'required|max: 20',
+            'happy'=> 'required|max:100',
+            'paraHappy'=>'required|max:30',
+            'project'=> 'required|max:35',
+            'paraProject'=>'required|max:30',
+            'support'=> 'required|max:100',
+            'paraSupp'=>'required|max:35',
+            'work'=>'required|max:100',
+            'paraWork'=>'required|max:35',
+        ]);
+
+        $update = new Facts;
+        $update->titre=$request->titre;
+        $update->titrePara=$request->titrePara;
+        $update->happy=$request->happy;
+        $update->paraHappy=$request->paraHappy;
+        $update->project=$request->project;
+        $update->paraProject=$request->paraProject;
+        $update->support=$request->support;
+        $update->paraSupp=$request->paraSupp;
+        $update->work=$request->work;
+        $update->paraWork=$request->paraWork;
+        $update->save();
+        return redirect('/dashboard/facts')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -78,8 +131,10 @@ class FactsController extends Controller
      * @param  \App\Models\Facts  $facts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facts $facts)
+    public function destroy($id)
     {
-        //
+        $destroy = Facts::find($id);
+        $destroy->delete();
+        return redirect("/dashboard/facts")->with('danger');
     }
 }

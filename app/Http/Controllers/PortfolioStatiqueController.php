@@ -14,7 +14,8 @@ class PortfolioStatiqueController extends Controller
      */
     public function index()
     {
-        //
+        $portfolioStatique= PortfolioStatique::all();
+        return view('backend.pages.portfolio', compact('portfolioStatique'));
     }
 
     /**
@@ -35,7 +36,16 @@ class PortfolioStatiqueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre' => 'required|max:25',
+            'paragraphe'=>'required|max:255'
+        ]);
+        $store= new PortfolioStatique;
+        $store->titre=$request->titre;
+        $store->paragraphe=$request->paragraphe;
+        $store->save();
+        return redirect()->route('/dashboard/portfolio')->with('success', 'PortfolioStatique ajouté avec succès');
+
     }
 
     /**
@@ -46,7 +56,8 @@ class PortfolioStatiqueController extends Controller
      */
     public function show(PortfolioStatique $portfolioStatique)
     {
-        //
+        $show = $portfolioStatique;
+        return view("backend.pages.portfolioStatic.portfolioStaticShow", compact("show"));
     }
 
     /**
@@ -55,9 +66,10 @@ class PortfolioStatiqueController extends Controller
      * @param  \App\Models\PortfolioStatique  $portfolioStatique
      * @return \Illuminate\Http\Response
      */
-    public function edit(PortfolioStatique $portfolioStatique)
+    public function edit($id)
     {
-        //
+        $edit= PortfolioStatique::find($id);
+        return view('backend.pages.portfolioStatic.portfolioStaticEdit', compact('edit'));
     }
 
     /**
@@ -69,7 +81,15 @@ class PortfolioStatiqueController extends Controller
      */
     public function update(Request $request, PortfolioStatique $portfolioStatique)
     {
-        //
+        request()->validate([
+            'titre' => 'required|max:25',
+            'paragraphe'=>'required|max:255'
+        ]);
+        $update = new PortfolioStatique;
+        $update->titre=$request->titre;
+        $update->paragraphe=$request->paragraphe;
+        $update->save();
+        return redirect()->route('/dashboard/portfolio')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -78,8 +98,10 @@ class PortfolioStatiqueController extends Controller
      * @param  \App\Models\PortfolioStatique  $portfolioStatique
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PortfolioStatique $portfolioStatique)
+    public function destroy($id)
     {
-        //
+        $destroy = PortfolioStatique::find($id);
+        $destroy->delete();
+        return redirect("/dashboard/portfolio")->with('danger', "effacé");
     }
 }
