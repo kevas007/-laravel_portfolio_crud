@@ -24,7 +24,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.service');
     }
 
     /**
@@ -35,7 +35,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            "titre" => ["required"],
+            "description" => ["required"],
+            "icon" => ["required"],
+        ]);
+
+        $store = new Service;
+        $store->titre = $request->titre;
+        $store->description = $request->description;
+        $store->icon = $request->icon;
+        $store->save();
+        return redirect('dashboard/services')->with('success', 'Portfolio créé avec succès');
     }
 
     /**
@@ -44,9 +55,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show($id)
     {
-        //
+        $show= Service ::find($id);
+        return view("backend.pages.servicesCrud.servicesShow", compact("show"));
     }
 
     /**
@@ -55,9 +67,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit( $id)
     {
-        //
+        $edit= Service::find($id);
+        return view('backend.pages.servicesCrud.servicesEdit', compact('edit'));
     }
 
     /**
@@ -69,7 +82,18 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        request()->validate([
+            "titre" => ["required"],
+            "description" => ["required"],
+            "icon" => ["required"],
+        ]);
+        $update = Service::find($service->id);
+        $update->titre = $request->titre;
+        $update->description = $request->description;
+        $update->icon = $request->icon;
+        $update->save();
+
+        return redirect('dashboard/services')->with('warning', 'Service updated');
     }
 
     /**
@@ -80,6 +104,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $destroy = Service::find($service->id);
+        $destroy->delete();
+        return redirect("/dashboard/services")->with('danger', 'effacé');
     }
 }

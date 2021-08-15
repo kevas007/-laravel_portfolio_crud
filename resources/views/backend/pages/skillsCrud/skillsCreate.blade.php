@@ -1,5 +1,5 @@
 @extends('dashboard')
 
 @section('body')
-@include('backend.partials.skillsStac.skillEdit')
+@include('backend.partials.skills.skillsCreate')
 @endsection

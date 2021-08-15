@@ -14,7 +14,7 @@ class ServiceStaticController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,7 +35,17 @@ class ServiceStaticController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        request()->validate([
+            "titre" => ["required"],
+            "description" => ["required"],
+        ]);
+        $store = new ServiceStatic;
+        $store->titre = $request->titre;
+        $store->description = $request->description;
+        $store->icon = $request->icon;
+        $store->save();
+        return redirect('dashboard/services')->with('success', 'Portfolio créé avec succès');
     }
 
     /**
@@ -46,7 +56,8 @@ class ServiceStaticController extends Controller
      */
     public function show(ServiceStatic $serviceStatic)
     {
-        //
+        // $show= ServiceStatic::find($serviceStatic->id);
+        // return view("backend.pages.servicesCrud.servicesShow", compact("show"));
     }
 
     /**
@@ -57,7 +68,8 @@ class ServiceStaticController extends Controller
      */
     public function edit(ServiceStatic $serviceStatic)
     {
-        //
+        $edit= ServiceStatic::find($serviceStatic->id);
+        return view('backend.pages.servicesCrud.servicesEdit', compact('edit'));
     }
 
     /**
@@ -69,7 +81,15 @@ class ServiceStaticController extends Controller
      */
     public function update(Request $request, ServiceStatic $serviceStatic)
     {
-        //
+        request()->validate([
+            "titre" => ["required"],
+            "description" => ["required"],
+        ]);
+        $update = ServiceStatic ::find($serviceStatic->id);
+        $update->titre = $request->titre;
+        $update->description = $request->description;
+        $update->save();
+        return redirect('dashboard/services')->with('warning', 'Service updated');
     }
 
     /**
@@ -80,6 +100,8 @@ class ServiceStaticController extends Controller
      */
     public function destroy(ServiceStatic $serviceStatic)
     {
-        //
+        $destroy = ServiceStatic ::find($serviceStatic->id);
+        $destroy->delete();
+        return redirect("/dashboard/services")->with('danger', 'effacé');
     }
 }

@@ -74,7 +74,7 @@ class AboutController extends Controller
         $store->freelance = $request->freelance;
         $store->paragraphe = $request->paragraphe;
         $store->save();
-        return redirect('/dashboard/about')->with('succes', 'creation effectif');
+        return redirect('/dashboard/about')->with('success', 'creation effectif');
     }
 
     /**
@@ -110,7 +110,7 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, About $about)
+    public function update(Request $request, $id)
 
     {
         request()->validate([
@@ -132,7 +132,7 @@ class AboutController extends Controller
         'paragraphe'=>['required', 'max:255']
     ]);
 
-        $update = new About;
+        $update = About::find($id);
         $update->titreAbout = $request->titreAbout;
         $update->para = $request->para;
         $update->nom = $request->nom;
@@ -151,6 +151,7 @@ class AboutController extends Controller
         $update->freelance = $request->freelance;
         $update->paragraphe = $request->paragraphe;
         $update->save();
+
         return redirect('/dashboard/about')->with('warning', ' la modf a été effectué');
     }
 
@@ -164,6 +165,6 @@ class AboutController extends Controller
     {
         $destroy = About::find($id);
         $destroy->delete();
-        return redirect("/dashboard/about")->with('danger');
+        return redirect("/dashboard/about")->with('danger', "effacé");
     }
 }

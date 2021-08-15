@@ -14,7 +14,7 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +24,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.skillsCrud.skillsCreate');
     }
 
     /**
@@ -35,7 +35,15 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre' => 'required|max:25',
+            'value'=>'required|numeric',
+        ]);
+        $store = new Skill;
+        $store->titre = $request->title;
+        $store->value = $request->value;
+        $store->save();
+        return redirect()->route('/dashboard/Skill')->with('success', 'Skill créé avec succès');
     }
 
     /**
@@ -44,9 +52,10 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function show(Skill $skill)
+    public function show( $id)
     {
-        //
+        $show = Skill::find($id);
+        return view("backend.pages.skillsCrud.skillsShow", compact("show"));
     }
 
     /**
@@ -55,9 +64,10 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function edit(Skill $skill)
+    public function edit($id)
     {
-        //
+        $edit= Skill::find($id);
+        return view('backend.pages.skillsCrud.skillsEdit', compact('edit'));
     }
 
     /**
@@ -67,9 +77,17 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'titre' => 'required|max:25',
+            'value'=>'required|numeric',
+        ]);
+        $update = Skill::find($id);
+        $update->titre = $request->title;
+        $update->value = $request->value;
+        $update->save();
+        return redirect()->route('/dashboard/Skill')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -78,8 +96,10 @@ class SkillController extends Controller
      * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy($id)
     {
-        //
+        $destroy = Skill::find($id);
+        $destroy->delete();
+        return redirect("/dashboard/skill")->with('danger', 'effacé');
     }
 }

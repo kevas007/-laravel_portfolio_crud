@@ -14,8 +14,8 @@ class SkillstaticController extends Controller
      */
     public function index()
     {
-        $skillstatic = Skillstatic::all();
-        return view('backend.pages.skills', compact('skillstatic'));
+
+
     }
 
     /**
@@ -44,7 +44,7 @@ class SkillstaticController extends Controller
         $store->titre = request('titre');
         $store->description = request('description');
         $store->save();
-        return redirect()->route('/dashboard/skills')->with('success', 'Skills ajouté avec succès');
+        return redirect('dashboard/skills')->with('success', 'Skills ajouté avec succès');
     }
 
     /**
@@ -53,9 +53,9 @@ class SkillstaticController extends Controller
      * @param  \App\Models\Skillstatic  $skillstatic
      * @return \Illuminate\Http\Response
      */
-    public function show(Skillstatic $skillstatic)
+    public function show($id)
     {
-        $show = $skillstatic;
+        $show = Skillstatic::find($id);
         return view("backend.pages.skillsStatic.skillsShow", compact("show"));
     }
 
@@ -65,9 +65,9 @@ class SkillstaticController extends Controller
      * @param  \App\Models\Skillstatic  $skillstatic
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
-        $edit= Skillstatic ::find($id);
+        $edit= Skillstatic::find($id);
         return view('backend.pages.skillsStatic.skillsEdit', compact('edit'));
     }
 
@@ -78,18 +78,18 @@ class SkillstaticController extends Controller
      * @param  \App\Models\Skillstatic  $skillstatic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skillstatic $skillstatic)
+    public function update(Request $request, $id)
     {
 
         request()->validate([
             'titre'=> 'required|max:25',
             'description'=> 'required|max:255',
         ]);
-        $update = new Skillstatic;
-        $update->titre = request('titre');
-        $update->description = request('description');
+        $update = Skillstatic::find($id);
+        $update->titre = $request->titre;
+        $update->description = $request->description;
         $update->save();
-        return redirect()->route('/dashboard/skills')->with('warning', ' la modf a été effectué');
+        return redirect('dashboard/skills')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -102,6 +102,6 @@ class SkillstaticController extends Controller
     {
         $destroy = Skillstatic ::find($id);
         $destroy->delete();
-        return redirect("/dashboard/skills")->with('danger', "effacé");
+        return redirect("/dashboard/skil")->with('danger', "effacé");
     }
 }

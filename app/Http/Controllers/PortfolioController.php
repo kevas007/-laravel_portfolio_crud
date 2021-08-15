@@ -14,8 +14,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        $portfolio= Portfolio::all();
-        return view('backend.pages.portfolio', compact('portfolio'));
+
+
     }
 
     /**
@@ -46,7 +46,7 @@ class PortfolioController extends Controller
         $store->filter = $request->filter;
         $store->lien = $request->lien;
         $store->save();
-        return redirect()->route('/dashboard/portfolio')->with('success', 'Portfolio créé avec succès');
+        return redirect('/dashboard')->with('success', 'Portfolio créé avec succès');
     }
 
     /**
@@ -55,9 +55,9 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function show(Portfolio $portfolio)
+    public function show($id)
     {
-        $show = $portfolio;
+        $show= Portfolio::find($id);
         return view("backend.pages.portfolioCrud.portfolioShow", compact("show"));
     }
 
@@ -80,19 +80,19 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Portfolio $portfolio)
+    public function update(Request $request, $id)
     {
         request()->validate([
             'title' => 'required|max:25',
             'filter'=>'required|max:50',
             'lien'=> 'required|max:50'
         ]);
-        $update = new Portfolio;
+        $update = Portfolio::find($id);
         $update->title = $request->title;
         $update->filter = $request->filter;
         $update->lien = $request->lien;
         $update->save();
-        return redirect()->route('/dashboard/portfolio')->with('warning', ' la modf a été effectué');
+        return redirect('/dashboard')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -105,6 +105,6 @@ class PortfolioController extends Controller
     {
         $destroy = Portfolio::find($id);
         $destroy->delete();
-        return redirect("/dashboard/portfolio")->with('danger', 'effacé');
+        return redirect("/dashboard")->with('danger', 'effacé');
     }
 }

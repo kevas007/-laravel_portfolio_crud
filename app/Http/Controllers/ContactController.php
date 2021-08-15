@@ -14,7 +14,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all();
+        return view('backend.pages.contact', compact('contacts'));
     }
 
     /**
@@ -35,7 +36,24 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre'=>['required', 'max:35'],
+            'description'=>['required', 'max:255'],
+            'locationTitre'=>['required', 'max:20'],
+            'location'=>['required', 'max:15'],
+            'emailTitre'=>['required', 'max:35'],
+            'email'=>['required', 'max:255']
+        ]);
+        $store = new Contact;
+        $store->titre = $request->titre;
+        $store->description = $request->description;
+        $store->locationTitre = $request->locationTitre;
+        $store->location = $request->location;
+        $store->emailTitre = $request->emailTitre;
+        $store->email = $request->email;
+        $store->save();
+        return redirect()->route('backend.pages.contact')->with('success', 'creation effectif');
+
     }
 
     /**
@@ -57,7 +75,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        $edit= Contact::find($contact->id);
+        return view('backend.pages.contactCrud.contactEdit', compact('edit'));
     }
 
     /**
@@ -69,7 +88,23 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        request()->validate([
+            'titre'=>['required', 'max:35'],
+            'description'=>['required', 'max:255'],
+            'locationTitre'=>['required', 'max:20'],
+            'location'=>['required', 'max:15'],
+            'emailTitre'=>['required', 'max:35'],
+            'email'=>['required', 'max:255']
+        ]);
+        $update = Contact::find($contact->id);
+        $update->titre = $request->titre;
+        $update->description = $request->description;
+        $update->locationTitre = $request->locationTitre;
+        $update->location = $request->location;
+        $update->emailTitre = $request->emailTitre;
+        $update->email = $request->email;
+        $update->save();
+        return redirect()->route('backend.pages.contact')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -80,6 +115,8 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $destroy = Contact::find($contact->id);
+        $destroy->delete();
+        return redirect("/dashboard/about")->with('danger', "effacé");
     }
 }

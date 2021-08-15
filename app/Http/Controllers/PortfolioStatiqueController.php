@@ -14,8 +14,7 @@ class PortfolioStatiqueController extends Controller
      */
     public function index()
     {
-        $portfolioStatique= PortfolioStatique::all();
-        return view('backend.pages.portfolio', compact('portfolioStatique'));
+
     }
 
     /**
@@ -44,7 +43,7 @@ class PortfolioStatiqueController extends Controller
         $store->titre=$request->titre;
         $store->paragraphe=$request->paragraphe;
         $store->save();
-        return redirect()->route('/dashboard/portfolio')->with('success', 'PortfolioStatique ajouté avec succès');
+        return redirect()->route('/dashboard/potfolios')->with('success', 'PortfolioStatique ajouté avec succès');
 
     }
 
@@ -54,9 +53,9 @@ class PortfolioStatiqueController extends Controller
      * @param  \App\Models\PortfolioStatique  $portfolioStatique
      * @return \Illuminate\Http\Response
      */
-    public function show(PortfolioStatique $portfolioStatique)
+    public function show( $id)
     {
-        $show = $portfolioStatique;
+        $show =PortfolioStatique::find($id);
         return view("backend.pages.portfolioStatic.portfolioStaticShow", compact("show"));
     }
 
@@ -68,7 +67,7 @@ class PortfolioStatiqueController extends Controller
      */
     public function edit($id)
     {
-        $edit= PortfolioStatique::find($id);
+        $edit=PortfolioStatique::find($id);
         return view('backend.pages.portfolioStatic.portfolioStaticEdit', compact('edit'));
     }
 
@@ -79,17 +78,17 @@ class PortfolioStatiqueController extends Controller
      * @param  \App\Models\PortfolioStatique  $portfolioStatique
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PortfolioStatique $portfolioStatique)
+    public function update(Request $request,$id)
     {
         request()->validate([
             'titre' => 'required|max:25',
             'paragraphe'=>'required|max:255'
         ]);
-        $update = new PortfolioStatique;
+        $update = PortfolioStatique::find($id);
         $update->titre=$request->titre;
         $update->paragraphe=$request->paragraphe;
         $update->save();
-        return redirect()->route('/dashboard/portfolio')->with('warning', ' la modf a été effectué');
+        return redirect('/dashboard/potfolios')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -102,6 +101,6 @@ class PortfolioStatiqueController extends Controller
     {
         $destroy = PortfolioStatique::find($id);
         $destroy->delete();
-        return redirect("/dashboard/portfolio")->with('danger', "effacé");
+        return redirect("/dashboard/potfolios")->with('danger', "effacé");
     }
 }

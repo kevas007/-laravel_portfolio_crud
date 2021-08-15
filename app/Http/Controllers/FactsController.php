@@ -69,9 +69,9 @@ class FactsController extends Controller
      * @param  \App\Models\Facts  $facts
      * @return \Illuminate\Http\Response
      */
-    public function show(Facts $facts)
+    public function show($id)
     {
-        $show = $facts;
+        $show = Facts::find($id);
         return view("backend.pages.factsCrud.factShow", compact("show"));
     }
 
@@ -94,7 +94,7 @@ class FactsController extends Controller
      * @param  \App\Models\Facts  $facts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Facts $facts)
+    public function update(Request $request, $id)
     {
 
         request()->validate([
@@ -110,7 +110,7 @@ class FactsController extends Controller
             'paraWork'=>'required|max:35',
         ]);
 
-        $update = new Facts;
+        $update =  Facts::find($id);
         $update->titre=$request->titre;
         $update->titrePara=$request->titrePara;
         $update->happy=$request->happy;

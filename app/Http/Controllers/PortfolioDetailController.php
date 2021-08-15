@@ -14,7 +14,8 @@ class PortfolioDetailController extends Controller
      */
     public function index()
     {
-        //
+        $details = PortfolioDetail::all();
+        return view('backend.pages.portofioDetails', compact('details'));
     }
 
     /**
@@ -35,7 +36,35 @@ class PortfolioDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titre'=>['required', 'max:35'],
+            'home'=>['required', 'max:255'],
+            'details'=>['required', 'max:20'],
+            'image1'=>['required', 'max:15'],
+            'image2'=>['required', 'max:15'],
+            'image3'=>['required', 'max:15'],
+            'category'=>['required', 'max:35'],
+            'client'=>['required', 'max:255'],
+            'projetDate'=>['required', 'max:255'],
+            'projetUrl'=>['required', 'max:255'],
+            'titre3'=>['required', 'max:255'],
+            'para'=>['required', 'max:255'],
+        ]);
+        $store = new  PortfolioDetail;
+        $store->titre = $request->titre;
+        $store->home = $request->home;
+        $store->details = $request->details;
+        $store->image1 = $request->image1;
+        $store->image2 = $request->image2;
+        $store->image3 = $request->image3;
+        $store->category = $request->category;
+        $store->client = $request->client;
+        $store->projetDate = $request->projetDate;
+        $store->projetUrl = $request->projetUrl;
+        $store->titre3 = $request->titre3;
+        $store->para = $request->para;
+        $store->save();
+        return redirect()->route('/dashboard/detail')->with('success', 'PortfolioDetail a été ajouté');
     }
 
     /**
@@ -46,7 +75,8 @@ class PortfolioDetailController extends Controller
      */
     public function show(PortfolioDetail $portfolioDetail)
     {
-        //
+        $show = PortfolioDetail::find($portfolioDetail->id);
+        return view("backend.pages.portofioDetails", compact("show"));
     }
 
     /**
@@ -57,7 +87,8 @@ class PortfolioDetailController extends Controller
      */
     public function edit(PortfolioDetail $portfolioDetail)
     {
-        //
+        $edit= PortfolioDetail::find($portfolioDetail->id);
+        return view('backend.pages.portfolioDetailCrud.portfoliodetail', compact('edit'));
     }
 
     /**
@@ -69,7 +100,35 @@ class PortfolioDetailController extends Controller
      */
     public function update(Request $request, PortfolioDetail $portfolioDetail)
     {
-        //
+        request()->validate([
+            'titre'=>['required', 'max:35'],
+            'home'=>['required', 'max:255'],
+            'details'=>['required', 'max:20'],
+            'image1'=>['required', 'max:15'],
+            'image2'=>['required', 'max:15'],
+            'image3'=>['required', 'max:15'],
+            'category'=>['required', 'max:35'],
+            'client'=>['required', 'max:255'],
+            'projetDate'=>['required', 'max:255'],
+            'projetUrl'=>['required', 'max:255'],
+            'titre3'=>['required', 'max:255'],
+            'para'=>['required', 'max:255'],
+        ]);
+        $update = PortfolioDetail::find($portfolioDetail->id);
+        $update->titre = $request->titre;
+        $update->home = $request->home;
+        $update->details = $request->details;
+        $update->image1 = $request->image1;
+        $update->image2 = $request->image2;
+        $update->image3 = $request->image3;
+        $update->category = $request->category;
+        $update->client = $request->client;
+        $update->projetDate = $request->projetDate;
+        $update->projetUrl = $request->projetUrl;
+        $update->titre3 = $request->titre3;
+        $update->para = $request->para;
+        $update->save();
+        return redirect()->route('/dashboard/detail')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -80,6 +139,9 @@ class PortfolioDetailController extends Controller
      */
     public function destroy(PortfolioDetail $portfolioDetail)
     {
-        //
+        
+        $destroy = PortfolioDetail::find($portfolioDetail->id);
+        $destroy->delete();
+        return redirect("/dashboard")->with('danger', "effacé");
     }
 }

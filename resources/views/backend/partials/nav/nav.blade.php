@@ -14,11 +14,11 @@
             <a class="flex items-center px-4 py-2 mt-5 {{request()->is('dashboard/facts') ? ('text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200') : ('text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700')}}" href="/dashboard/facts">
                 <span class="mx-4 font-medium">Facts</span>
             </a>
-            <a class="flex items-center px-4 py-2 mt-5 {{request()->is('/dashboard/skills') ? ('text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200') : ('text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700')}}" href="/dashboard/skills">
+            <a class="flex items-center px-4 py-2 mt-5 {{request()->is('dashboard/skills') ? ('text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200') : ('text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700')}}" href="/dashboard/skills">
                 <span class="mx-4 font-medium">Skills</span>
             </a>
-            <a class="flex items-center px-4 py-2 mt-5 {{request()->is('dashboard/potfolio') ? ('text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200') : ('text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700')}}" href="/dashboard/potfolio">
-                <span class="mx-4 font-medium">Portfolio</span>
+            <a class="flex items-center px-4 py-2 mt-5 {{request()->is('dashboard/potfolios') ? ('text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200') : ('text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700')}}" href="/dashboard/potfolios">
+                <span class="mx-4 font-medium">Portfolios</span>
             </a>
             <a class="flex items-center px-4 py-2 mt-5 {{request()->is('dashboard/service') ? ('text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200') : ('text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700')}}" href="/dashboard/service">
                 <span class="mx-4 font-medium">Services</span>

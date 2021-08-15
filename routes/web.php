@@ -4,8 +4,10 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FactsController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PortfolioStatiqueController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\SkillstaticController;
 use App\Models\About;
 use App\Models\Contact;
 use App\Models\Facts;
@@ -42,13 +44,36 @@ Route::get('/', function () {
     return view('welcome', compact('services', 'facts', 'portfolios', 'portfolioStats','servicestacs', 'skills', 'skillStact', 'abouts', 'contacts'));
 });
 
+Route::get('/dashboard/skills', function (){
+    $skils= Skill::all();
+    $skilles = Skillstatic::all();
+    return view('backend.pages.skills', compact('skils', 'skilles'));
+});
+
+Route::get('/dashboard/services', function (){
+    $services= Service::all();
+    $serviceStacs= ServiceStatic::all();
+    return view('backend.pages.service', compact('services','serviceStacs'));
+});
+
+Route::get('/dashboard/potfolios', function (){
+    $portfolio= Portfolio::all();
+    $portfolioStatiques= PortfolioStatique::all();
+    return view('backend.pages.portfolio', compact('portfolio','portfolioStatiques'));
+});
+
 Route::resource('/dashboard/about', AboutController::class);
 
 Route::resource('/dashboard/facts', FactsController::class);
 
-Route::resource('/dashboard/skills', SkillController::class);
+Route::resource('/dashboard/skillse', SkillController::class);
+
+Route::resource('/dashboard/skil', SkillstaticController::class);
 
 Route::resource('/dashboard/potfolio', PortfolioController::class);
+
+
+Route::resource('/dashboard/potfolioStac', PortfolioStatiqueController::class);
 
 Route::resource('/dashboard/service', ServiceController::class);
 

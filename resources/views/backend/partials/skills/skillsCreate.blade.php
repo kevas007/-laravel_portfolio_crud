@@ -1,5 +1,5 @@
 <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-    <form action="/dashboard/portfolios" method="POST">
+    <form action="/dashboard/skil" method="POST">
         @csrf
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
@@ -8,12 +8,8 @@
             </div>
 
             <div>
-                <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Filter</label>
-                <input id="emailAddress" type="text" name="filter"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-            </div>
-            <div>
-                <label class="text-gray-700 dark:text-gray-200" for="emailAddress">lien</label>
-                <input id="emailAddress" type="text" name="lien"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Value</label>
+                <input id="emailAddress" type="text" name="value"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
             </div>
 
         </div>
