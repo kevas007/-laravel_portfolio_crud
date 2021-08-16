@@ -35,7 +35,7 @@ class ServiceStaticController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         request()->validate([
             "titre" => ["required"],
             "description" => ["required"],
@@ -66,10 +66,10 @@ class ServiceStaticController extends Controller
      * @param  \App\Models\ServiceStatic  $serviceStatic
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceStatic $serviceStatic)
+    public function edit($id)
     {
-        $edit= ServiceStatic::find($serviceStatic->id);
-        return view('backend.pages.servicesCrud.servicesEdit', compact('edit'));
+        $edit= ServiceStatic::find($id);
+        return view('backend.pages.ServicesStact.servicesEdit', compact('edit'));
     }
 
     /**
@@ -79,13 +79,13 @@ class ServiceStaticController extends Controller
      * @param  \App\Models\ServiceStatic  $serviceStatic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceStatic $serviceStatic)
+    public function update(Request $request,$id)
     {
         request()->validate([
             "titre" => ["required"],
             "description" => ["required"],
         ]);
-        $update = ServiceStatic ::find($serviceStatic->id);
+        $update = ServiceStatic ::find($id);
         $update->titre = $request->titre;
         $update->description = $request->description;
         $update->save();
@@ -98,9 +98,9 @@ class ServiceStaticController extends Controller
      * @param  \App\Models\ServiceStatic  $serviceStatic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceStatic $serviceStatic)
+    public function destroy($id)
     {
-        $destroy = ServiceStatic ::find($serviceStatic->id);
+        $destroy = ServiceStatic ::find($id);
         $destroy->delete();
         return redirect("/dashboard/services")->with('danger', 'effacé');
     }

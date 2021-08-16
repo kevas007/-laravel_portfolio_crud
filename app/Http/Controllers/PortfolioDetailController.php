@@ -14,7 +14,7 @@ class PortfolioDetailController extends Controller
      */
     public function index()
     {
-        $details = PortfolioDetail::all();
+        $details=PortfolioDetail::all();
         return view('backend.pages.portofioDetails', compact('details'));
     }
 
@@ -64,7 +64,7 @@ class PortfolioDetailController extends Controller
         $store->titre3 = $request->titre3;
         $store->para = $request->para;
         $store->save();
-        return redirect()->route('/dashboard/detail')->with('success', 'PortfolioDetail a été ajouté');
+        return redirect('/dashboard')->with('success', 'PortfolioDetail a été ajouté');
     }
 
     /**
@@ -85,9 +85,9 @@ class PortfolioDetailController extends Controller
      * @param  \App\Models\PortfolioDetail  $portfolioDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(PortfolioDetail $portfolioDetail)
+    public function edit($id)
     {
-        $edit= PortfolioDetail::find($portfolioDetail->id);
+        $edit= PortfolioDetail::find($id);
         return view('backend.pages.portfolioDetailCrud.portfoliodetail', compact('edit'));
     }
 
@@ -98,7 +98,7 @@ class PortfolioDetailController extends Controller
      * @param  \App\Models\PortfolioDetail  $portfolioDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PortfolioDetail $portfolioDetail)
+    public function update(Request $request,$id)
     {
         request()->validate([
             'titre'=>['required', 'max:35'],
@@ -114,7 +114,7 @@ class PortfolioDetailController extends Controller
             'titre3'=>['required', 'max:255'],
             'para'=>['required', 'max:255'],
         ]);
-        $update = PortfolioDetail::find($portfolioDetail->id);
+        $update = PortfolioDetail::find($id);
         $update->titre = $request->titre;
         $update->home = $request->home;
         $update->details = $request->details;
@@ -128,7 +128,7 @@ class PortfolioDetailController extends Controller
         $update->titre3 = $request->titre3;
         $update->para = $request->para;
         $update->save();
-        return redirect()->route('/dashboard/detail')->with('warning', ' la modf a été effectué');
+        return redirect('/dashboard')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -137,10 +137,10 @@ class PortfolioDetailController extends Controller
      * @param  \App\Models\PortfolioDetail  $portfolioDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PortfolioDetail $portfolioDetail)
+    public function destroy($id)
     {
-        
-        $destroy = PortfolioDetail::find($portfolioDetail->id);
+
+        $destroy = PortfolioDetail::find($id);
         $destroy->delete();
         return redirect("/dashboard")->with('danger', "effacé");
     }

@@ -73,9 +73,9 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit($id)
     {
-        $edit= Contact::find($contact->id);
+        $edit= Contact::find($id);
         return view('backend.pages.contactCrud.contactEdit', compact('edit'));
     }
 
@@ -86,7 +86,7 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, $id)
     {
         request()->validate([
             'titre'=>['required', 'max:35'],
@@ -96,7 +96,7 @@ class ContactController extends Controller
             'emailTitre'=>['required', 'max:35'],
             'email'=>['required', 'max:255']
         ]);
-        $update = Contact::find($contact->id);
+        $update = Contact::find($id);
         $update->titre = $request->titre;
         $update->description = $request->description;
         $update->locationTitre = $request->locationTitre;
@@ -113,9 +113,9 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
-        $destroy = Contact::find($contact->id);
+        $destroy = Contact::find($id);
         $destroy->delete();
         return redirect("/dashboard/about")->with('danger', "effacé");
     }

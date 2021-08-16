@@ -3,10 +3,10 @@
     <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-            <h2>Portfoio Details</h2>
+            <h2>{{ $details[0]->titre }}</h2>
             <ol>
-                <li><a href="/">Home</a></li>
-                <li>Portfoio Details</li>
+                <li>{!! $details[0]->home !!}</li>
+                <li>{{ $details[0]->details }}</li>
             </ol>
         </div>
 
@@ -20,30 +20,27 @@
         <div class="portfolio-details-container">
 
             <div class="owl-carousel portfolio-details-carousel">
-                <img src="{{ asset('assets/img/portfolio-details-1.jpg') }}" class="img-fluid" alt="">
-                <img src="{{ asset('assets/img/portfolio-details-2.jpg') }}" class="img-fluid" alt="">
-                <img src="{{ asset('assets/img/portfolio-details-3.jpg') }}" class="img-fluid" alt="">
+                <img src="{{ asset('assets/img/'.$details[0]->image1 ) }}" class="img-fluid" alt="">
+                <img src="{{ asset('assets/img/'.$details[0]->image2 ) }}" class="img-fluid" alt="">
+                <img src="{{ asset('assets/img/'.$details[0]->image3 ) }}" class="img-fluid" alt="">
             </div>
 
             <div class="portfolio-info">
-                <h3>Project information</h3>
+                <h3>{{ $details[0]->titre }}</h3>
                 <ul>
-                    <li><strong>Category</strong>: Web design</li>
-                    <li><strong>Client</strong>: ASU Company</li>
-                    <li><strong>Project date</strong>: 01 March, 2020</li>
-                    <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                    <li>{!! $details[0]->category !!}</li>
+                    <li>{!! $details[0]->client !!}</li>
+                    <li>{!! $details[0]->projetDate !!}</li>
+                    <li>{!! $details[0]->projetUrl !!}</li>
                 </ul>
             </div>
 
         </div>
 
         <div class="portfolio-description">
-            <h2>This is an example of portfolio detail</h2>
+            <h2>{{ $details[0]->titre3 }}</h2>
             <p>
-                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia.
-                Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia
-                accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt
-                eius.
+                {{ $details[0]->para }}
             </p>
         </div>
 
