@@ -37,22 +37,22 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'titreAbout'=>['required', 'max:35'],
-            'para'=>['required', 'max:255'],
-            'nom'=>['required', 'max:20'],
-            'prenom'=>['required', 'max:15'],
-            'titre'=>['required', 'max:35'],
-            'paragra'=>['required', 'max:255'],
-            'img'=>['required', 'max:35'],
-            'description'=>['required', 'max:255'],
-            'birthday'=>['required', 'max:45'],
-            'website'=>['required', 'max:55'],
-            'phone'=>['required', 'max:20'],
-            'city'=>['required', 'max:105'],
-            'age'=>['required', 'max:35'],
-            'degree'=>['required', 'max:35'],
-            'freelance'=>['required', 'max:45'],
-            'paragraphe'=>['required', 'max:255']
+            'titreAbout'=>['required', 'min:3','max:55'],
+            'para'=>['required', 'min:3','max:500'],
+            'nom'=>['required', 'min:3','max:20'],
+            'prenom'=>['required', 'min:3','max:15'],
+            'titre'=>['required','min:3', 'max:35'],
+            'paragra'=>['required','min:3', 'max:500'],
+            'img'=>['required','min:3', 'max:35'],
+            'description'=>['required', 'min:3','max:500'],
+            'birthday'=>['required', 'min:3','max:45'],
+            'website'=>['required', 'min:3','max:55'],
+            'phone'=>['required','min:3', 'max:150'],
+            'city'=>['required','min:3', 'max:105'],
+            'age'=>['required', 'min:3','max:35'],
+            'degree'=>['required', 'min:3','max:35'],
+            'freelance'=>['required', 'min:3','max:45'],
+            'paragraphe'=>['required','min:3', 'max:500']
         ]);
 
         $store = new About;
@@ -114,22 +114,22 @@ class AboutController extends Controller
 
     {
         request()->validate([
-        'titreAbout'=>['required', 'max:35'],
-        'para'=>['required', 'max:255'],
-        'nom'=>['required', 'max:20'],
-        'prenom'=>['required', 'max:15'],
-        'titre'=>['required', 'max:35'],
-        'paragra'=>['required', 'max:255'],
-        'img'=>['required', 'max:35'],
-        'description'=>['required', 'max:255'],
-        'birthday'=>['required', 'max:45'],
-        'website'=>['required', 'max:55'],
-        'phone'=>['required', 'max:20'],
-        'city'=>['required', 'max:105'],
-        'age'=>['required', 'max:35'],
-        'degree'=>['required', 'max:35'],
-        'freelance'=>['required', 'max:45'],
-        'paragraphe'=>['required', 'max:255']
+        'titreAbout'=>['required', 'min:3','max:55'],
+        'para'=>['required','min:3', 'max:500'],
+        'nom'=>['required','min:3', 'max:20'],
+        'prenom'=>['required','min:3', 'max:15'],
+        'titre'=>['required', 'min:3','max:35'],
+        'paragra'=>['required','min:3', 'max:500'],
+        'img'=>['required', 'min:3','max:35'],
+        'description'=>['required','min:3', 'max:500'],
+        'birthday'=>['required','min:3', 'max:45'],
+        'website'=>['required','min:3', 'max:55'],
+        'phone'=>['required','min:3', 'max:50'],
+        'city'=>['required', 'min:3','max:105'],
+        'age'=>['required','min:3', 'max:35'],
+        'degree'=>['required','min:3','max:35'],
+        'freelance'=>['required', 'min:3','max:45'],
+        'paragraphe'=>['required','min:3', 'max:500']
     ]);
 
         $update = About::find($id);

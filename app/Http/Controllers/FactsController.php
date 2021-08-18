@@ -37,16 +37,16 @@ class FactsController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'titre' => 'required|max:25',
-            'titrePara' =>'required|max: 20',
-            'happy'=> 'required|max:100',
-            'paraHappy'=>'required|max:30',
-            'project'=> 'required|max:35',
-            'paraProject'=>'required|max:30',
-            'support'=> 'required|max:100',
-            'paraSupp'=>'required|max:35',
-            'work'=>'required|max:100',
-            'paraWork'=>'required|max:35',
+            'titre' => ['required|max:25'],
+            'titrePara' =>['required|max: 20'],
+            'happy'=> ['required|max:100'],
+            'paraHappy'=>['required|max:30'],
+            'project'=> ['required|max:35'],
+            'paraProject'=>['required|max:30'],
+            'support'=> ['required|max:100'],
+            'paraSupp'=>['required|max:35'],
+            'work'=>['required|max:100'],
+            'paraWork'=>['required|max:35'],
         ]);
         $store= new Facts;
         $store->titre=$request->titre;
@@ -98,16 +98,16 @@ class FactsController extends Controller
     {
 
         request()->validate([
-            'titre' => 'required|max:25',
-            'titrePara' =>'required|max: 20',
-            'happy'=> 'required|max:100',
-            'paraHappy'=>'required|max:30',
-            'project'=> 'required|max:35',
+            'titre' => ['required|max:25'],
+            'titrePara' =>['required|max: 20'],
+            'happy'=> ['required|max:100'],
+            'paraHappy'=>['required|max:30'],
+            'project'=> ['required|max:35'],
             'paraProject'=>'required|max:30',
-            'support'=> 'required|max:100',
-            'paraSupp'=>'required|max:35',
-            'work'=>'required|max:100',
-            'paraWork'=>'required|max:35',
+            'support'=> ['required|max:100'],
+            'paraSupp'=>['required|max:35'],
+            'work'=>['required|max:100'],
+            'paraWork'=>['required|max:35'],
         ]);
 
         $update =  Facts::find($id);

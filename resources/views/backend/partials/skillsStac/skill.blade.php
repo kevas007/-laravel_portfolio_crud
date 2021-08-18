@@ -4,13 +4,13 @@
     <div class="p-6">
         <div class="flex justify-between align-center">
             {{-- {{ dd($skill) }} --}}
-                <h1>{{ $skilles[0]->id }}</h1>
+                <h1 class="mx-5">{{ $skilles[0]->id }}</h1>
                 <h1 class="mx-15">{{ $skilles[0]->titre }}</h1>
-                <h1>{{ $skilles[0]->description }}</h1>
-                <h1 class="flex">
+                <h1 class="mx-5">{{ $skilles[0]->description }}</h1>
+                <h1 class="mx-5 mt-2">
                     <a href="/dashboard/skil/{{ $skilles[0]->id }}" class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md dark:bg-gray-800 hover:bg-blue-500 dark:hover:bg-gray-700 focus:outline-none focus:bg-blue-500 dark:focus:bg-gray-700">SHOW</a>
                 </h1>
-                <h1>
+                <h1 class="mx-5">
                     <form action="/dashboard/skil/{{ $skilles[0]->id }}" method="POST">
                         @csrf
                         @method("DELETE")

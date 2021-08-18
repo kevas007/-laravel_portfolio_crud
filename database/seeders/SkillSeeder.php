@@ -16,32 +16,32 @@ class SkillSeeder extends Seeder
     {
         DB::table('skills')->insert([
             [
-                'titre'=>"HTML",
+                'title'=>"HTML",
                 "value"=>100,
                 "created_at"=>now()
             ],
             [
-                'titre'=>"CSS",
+                'title'=>"CSS",
                 "value"=>90,
                 "created_at"=>now()
             ],
             [
-                'titre'=>"Javascript",
+                'title'=>"Javascript",
                 "value"=>75,
                 "created_at"=>now()
             ],
             [
-                'titre'=>"PHP",
+                'title'=>"PHP",
                 "value"=>80,
                 "created_at"=>now()
             ],
             [
-                'titre'=>"wordpress",
+                'title'=>"wordpress",
                 "value"=>90,
                 "created_at"=>now()
             ],
             [
-                'titre'=>"photoshop",
+                'title'=>"photoshop",
                 "value"=>55,
                 "created_at"=>now()
             ],

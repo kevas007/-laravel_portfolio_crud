@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FactsController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PortfolioDetailController;
 use App\Http\Controllers\PortfolioStatiqueController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceStaticController;
@@ -74,7 +75,7 @@ Route::resource('/dashboard/about', AboutController::class);
 
 Route::resource('/dashboard/facts', FactsController::class);
 
-Route::resource('/dashboard/skillse', SkillController::class);
+Route::resource('/dashboard/skis', SkillController::class);
 
 Route::resource('/dashboard/skil', SkillstaticController::class);
 
@@ -90,7 +91,7 @@ Route::resource('/dashboard/serviceStac', ServiceStaticController::class);
 
 Route::resource('/dashboard/contact', ContactController::class);
 
-Route::resource('/dashboard/portfolioDetails',PortfolioDetail::class);
+Route::resource('/dashboard/portfolioDetails',PortfolioDetailController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

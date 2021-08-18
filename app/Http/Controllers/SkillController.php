@@ -36,11 +36,11 @@ class SkillController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'titre' => 'required|max:25',
-            'value'=>'required|numeric',
+            'title' => ['required','max:25'],
+            'value'=>['required','numeric'],
         ]);
         $store = new Skill;
-        $store->titre = $request->title;
+        $store->title = $request->title;
         $store->value = $request->value;
         $store->save();
         return redirect()->route('/dashboard/Skill')->with('success', 'Skill créé avec succès');
@@ -80,11 +80,11 @@ class SkillController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'titre' => 'required|max:25',
-            'value'=>'required|numeric',
+            'title' => ['required','max:25'],
+            'value'=>['required','numeric'],
         ]);
         $update = Skill::find($id);
-        $update->titre = $request->title;
+        $update->title = $request->title;
         $update->value = $request->value;
         $update->save();
         return redirect()->route('/dashboard/Skill')->with('warning', ' la modf a été effectué');

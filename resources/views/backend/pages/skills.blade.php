@@ -1,11 +1,12 @@
 @extends('dashboard')
-
+@include('flash')
 @section('body')
 <div class="container">
-    @include('backend.partials.skills.skills')
+    @include('backend.partials.skillsStac.skill')
+
     <br>
     <hr>
     <br>
-    @include('backend.partials.skillsStac.skill')
+    @include('backend.partials.skills.skills')
 </div>
 @endsection

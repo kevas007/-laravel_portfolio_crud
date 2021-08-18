@@ -46,7 +46,7 @@
             </div>
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="emailAddress">PorjetUrl</label>
-                <input id="emailAddress" type="text" name="porjetUrl"  value="{{ $edit->porjetUrl}}"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                <input id="emailAddress" type="text" name="projetUrl"  value="{{ $edit->projetUrl}}"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
             </div>
             <div>
                 <label class="text-gray-700 dark:text-gray-200" for="emailAddress">Titre3</label>

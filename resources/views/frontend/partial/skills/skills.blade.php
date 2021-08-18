@@ -2,9 +2,9 @@
         <!-- ======= Skills Section ======= -->
         <section id="skills" class="skills section-bg">
             <div class="container">
-                
+
                 <div class="section-title">
-                    <h2>{{ $skillStact[0]->titre }}</h2>
+                    <h2>{{ $skillStact[0]->title }}</h2>
                     <p>{{ $skillStact[0]->description }}</p>
                 </div>
 
@@ -15,7 +15,7 @@
 
 
                         <div class="progress">
-                            <span class="skill">{{ $skill->titre }} <i class="val">{{ $skill->value }}</i></span>
+                            <span class="skill">{{ $skill->title }} <i class="val">{{ $skill->value }}</i></span>
                             <div class="progress-bar-wrap">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{ $skill->value }}" aria-valuemin="0"
                                     aria-valuemax="100"></div>

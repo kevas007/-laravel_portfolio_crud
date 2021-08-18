@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ServiceStaticSeeder::class,
             SkillstaticSeeder::class,
             PortfolioDetailSeeder::class,
+            // Users::class,
             ]);
     }
 }
