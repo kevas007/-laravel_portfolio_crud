@@ -61,8 +61,8 @@ Route::get('/portfolio-details', function (){
 
 Route::get('/dashboard/services', function (){
     $services= Service::all();
-    $serviceStacs= ServiceStatic::all();
-    return view('backend.pages.service', compact('services','serviceStacs'));
+    $serviceStatics= ServiceStatic::all();
+    return view('backend.pages.service', compact('services','serviceStatics'));
 });
 
 Route::get('/dashboard/potfolios', function (){

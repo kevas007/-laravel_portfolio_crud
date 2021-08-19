@@ -37,16 +37,16 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'title' => 'required|max:25',
-            'filter'=>'required|max:50',
-            'lien'=> 'required|max:50'
+            'title' => ['required|max:25'],
+            'filter'=>['required','max:50'],
+            'lien'=> ['required','max:50']
         ]);
         $store = new Portfolio;
         $store->title = $request->title;
         $store->filter = $request->filter;
         $store->lien = $request->lien;
         $store->save();
-        return redirect('/dashboard')->with('success', 'Portfolio créé avec succès');
+        return redirect('/dashboard/potfolios')->with('success', 'Portfolio créé avec succès');
     }
 
     /**
@@ -83,16 +83,16 @@ class PortfolioController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'title' => 'required|max:25',
-            'filter'=>'required|max:50',
-            'lien'=> 'required|max:50'
+            'title' => ['required','max:25'],
+            'filter'=>['required','max:50'],
+            'lien'=> ['required','max:50']
         ]);
         $update = Portfolio::find($id);
         $update->title = $request->title;
         $update->filter = $request->filter;
         $update->lien = $request->lien;
         $update->save();
-        return redirect('/dashboard')->with('warning', ' la modf a été effectué');
+        return redirect('/dashboard/potfolios')->with('warning', ' la modification a été effectuée');
     }
 
     /**
@@ -105,6 +105,6 @@ class PortfolioController extends Controller
     {
         $destroy = Portfolio::find($id);
         $destroy->delete();
-        return redirect("/dashboard")->with('danger', 'effacé');
+        return redirect("/dashboard/potfolios")->with('danger', 'effacé');
     }
 }

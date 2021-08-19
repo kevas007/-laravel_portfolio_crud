@@ -37,13 +37,14 @@ class SkillController extends Controller
     {
         request()->validate([
             'title' => ['required','max:25'],
-            'value'=>['required','numeric'],
+            'value'=>['required', 'integer' ,'between:0,100'],
         ]);
         $store = new Skill;
         $store->title = $request->title;
         $store->value = $request->value;
         $store->save();
-        return redirect()->route('/dashboard/Skill')->with('success', 'Skill créé avec succès');
+
+        return redirect('/dashboard/skills')->with('success', 'Skill créé avec succès');
     }
 
     /**
@@ -81,13 +82,13 @@ class SkillController extends Controller
     {
         request()->validate([
             'title' => ['required','max:25'],
-            'value'=>['required','numeric'],
+            'value'=>['required', 'integer' ,'between:0,100' ],
         ]);
         $update = Skill::find($id);
         $update->title = $request->title;
         $update->value = $request->value;
         $update->save();
-        return redirect()->route('/dashboard/Skill')->with('warning', ' la modf a été effectué');
+        return redirect('/dashboard/skills')->with('warning', ' la modf a été effectué');
     }
 
     /**
@@ -100,6 +101,6 @@ class SkillController extends Controller
     {
         $destroy = Skill::find($id);
         $destroy->delete();
-        return redirect("/dashboard/skill")->with('danger', 'effacé');
+        return redirect("/dashboard/skills")->with('danger', 'effacé');
     }
 }
